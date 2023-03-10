@@ -1,0 +1,325 @@
+<!Doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+	integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+	integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+	crossorigin="anonymous"></script>
+
+<title>PRODUCT_MASTER</title>
+<style>
+header {
+	box-sizing: border-box;
+}
+
+.openBtn {
+	display: flex;
+	justify-content: left;
+}
+
+.openButton {
+	border: none;
+	border-radius: 5px;
+	background-color: #1c87c9;
+	color: white;
+	padding: 14px 20px;
+	cursor: pointer;
+	position: fixed;
+}
+
+.loginPopup {
+	position: relative;
+	text-align: center;
+	width: 100%;
+}
+
+.formPopup {
+	display: none;
+	position: fixed;
+	left: 50%;
+	top: 9%;
+	transform: translate(-50%, 5%);
+	border: 3px solid #999999;
+	z-index: 9;
+}
+
+.formContainer {
+	max-width: 800px;
+	padding: 20px;
+	background-color: #fff;
+}
+
+.formContainer .btn {
+	padding: 12px 20px;
+	border: none;
+	background-color: #8ebf42;
+	color: #fff;
+	cursor: pointer;
+	width: 100%;
+	margin-bottom: 15px;
+	opacity: 0.8;
+}
+
+.formContainer .cancel {
+	background-color: #cc0000;
+}
+
+.formContainer .btn:hover, .openButton:hover {
+	opacity: 1;
+}
+
+h1 {
+	text-align: center;
+	color: #e9573f;
+}
+
+.container-fluid {
+	font-size: 15px;
+	background-color: #e9573f;
+}
+
+.container1-fluid {
+	height: 50px;
+}
+
+.logoId {
+	padding-bottom: -10px;
+}
+
+footer {
+	height: auto;
+	background-color: lightblue;
+}
+
+.mg {
+	border-radius: 6rem;
+}
+
+.footer-cont {
+	background: #132646;
+	color: #9fb5d9;
+	padding: 20px 0 10px 0;
+}
+</style>
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+	crossorigin="anonymous"></script>
+</head>
+<body>
+
+
+
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+
+	<header class="p-3">
+
+		<div class="container1-fluid">
+			<div class="d-flex  flex-wrap  text-center">
+				<div class="logoId">
+					<img src="data:image/jpeg;base64,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" width="160" height="%">
+				</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<h1 class="text:center">PRODUCT MASTER</h1>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<div class="text-end">
+
+
+
+					<button type="button" class="btn btn-success" class="right">Login</button>
+					<button type="button" class="btn btn-warning">Contact_Us</button>
+					<br />
+
+
+				</div>
+
+			</div>
+		</div>
+
+	</header>
+	<header>
+
+		<div class="container-fluid" id="bodyofpg">
+			<div class="openbtn">
+				<h5 class="Search"></h5>
+				<button class="openButton" onclick="openForm()">
+					<strong>search Here</strong>
+				</button>
+
+				<div class="loginPopup">
+					<div class="formPopup" id="popupForm">
+						<form method="post" name="frm" action="search"
+							class="formContainer">
+							<table>
+								<tr>
+									<td><label>COMPANY_NAME</label></td>
+									<td>:</td>
+
+									<td><select id="company_name" name="company_name" onchange="SelectedTextValue(this)">
+											<option selected="selected" value="">Select Company
+												:</option>
+												<option>ARVIND CHEMICAL INDUSTRIES</option>
+											<option>MADHU PLASTICS PRIVATE LIMITED</option>
+											<option>synergy</option>
+											<option>Wipro</option>
+											<option>Talent_Aquision_Team</option>
+									</select> <input type="text" id="txtContent" name="txtContent" value=""/><br />
+									<br /></td>
+								</tr>
+				
+								<tr>
+									<td><LABEL>CATEGORY</LABEL></td>
+									<td>:</td>
+									<td><select id="" name="category2"
+										onchange="SelectedTextValue3(this)">
+											<option selected="selected" value="">Select Category
+											</option>
+											<option>WATER TREATMENT CHEMICALS</option>
+											<option>CYBER SECURITY</option>
+
+									</select> <input type="text" id="txtContent3" name="txtContent3" value="" /></td>
+								</tr>
+								<tr>
+									<td><LABEL>SUBCATEGORY</LABEL></td>
+									<td>:</td>
+									<td><select id="" name="sub_category2"
+										onchange="SelectedTextValue4(this)">
+											<option selected="selected" value="">Select
+												SubCategory</option>
+												<option>TCCA</option>
+											<option>CLOUD SECURITY</option>
+
+									</select> <input type="text" id="txtContent4" name="txtContent4" value="" /></td>
+								</tr>
+
+								<tr>
+									<td><button type="submit" class="btn" name="submit"
+											value="Search">SEARCH</button></td>
+									<td><td><button type="button" class="btn cancel"
+											onclick="closeForm()">Close</button></td></td>
+
+								</tr>
+							</table>
+						</form>
+					</div>
+				</div>
+				<script>
+					function SelectedTextValue(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent").value = selectedText;
+						} else {
+							document.getElementById("txtContent").value = "";
+						}
+					}
+					function SelectedTextValue5(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent5").value = selectedText;
+						} else {
+							document.getElementById("txtContent5").value = "";
+						}
+					}
+					function SelectedTextValue8(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent8").value = selectedText;
+						} else {
+							document.getElementById("txtContent8").value = "";
+						}
+					}
+					function SelectedTextValue1(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent1").value = selectedText;
+						} else {
+							document.getElementById("txtContent1").value = "";
+						}
+					}
+					function SelectedTextValue2(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent2").value = selectedText;
+						} else {
+							document.getElementById("txtContent2").value = "";
+						}
+					}
+					function SelectedTextValue3(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent3").value = selectedText;
+						} else {
+							document.getElementById("txtContent3").value = "";
+						}
+					}
+					function SelectedTextValue4(ele) {
+						if (ele.selectedIndex > 0) {
+							var selectedText = ele.options[ele.selectedIndex].innerHTML;
+							var selectedValue = ele.value;
+							document.getElementById("txtContent4").value = selectedText;
+						} else {
+							document.getElementById("txtContent4").value = "";
+						}
+					}
+				</script>
+
+				<script>
+					function openForm() {
+						document.getElementById("popupForm").style.display = "block";
+					}
+					function closeForm() {
+						document.getElementById("popupForm").style.display = "none";
+					}
+				</script>
+				<tr>
+					<td></td>
+
+					<td></td>
+
+					<td></td>
+				</tr>
+				</table>
+			</div>
+	</header>
+</html>
